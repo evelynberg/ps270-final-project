@@ -1,6 +1,6 @@
 ---
 title: "PS270 Final Project"
-author: "Your Name Here"
+author: "Evelyn Berg"
 description: "My final project"
 output:
   distill::distill_article:
@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to...
+I am interested in exploring data related to presidential approval ratings, particularly how they change or do not change after major scandals. Though it also may be interesting to research how these ratings are affected by changes in the economy like oil prices, unemployment, and inflation. Another factor could be related to foreign conflicts. On a different note, I am additionally interested in researching teacher salaries in areas of varying wealth and resources.
