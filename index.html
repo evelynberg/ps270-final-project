@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["Data.dta","final project data.zip","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1546,7 +1546,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-article">
 <h2 id="project-thoughts">Project thoughts</h2>
 <p>I am interested in exploring data related to presidential approval ratings, particularly how they change or do not change after major scandals. Though it also may be interesting to research how these ratings are affected by changes in the economy like oil prices, unemployment, and inflation. Another factor could be related to foreign conflicts. On a different note, I am additionally interested in researching teacher salaries in areas of varying wealth and resources.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="milestone-2">Milestone 2</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://haven.tidyverse.org'>haven</a></span><span class='op'>)</span></span>
+<span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://haven.tidyverse.org/reference/read_dta.html'>read_dta</a></span><span class='op'>(</span><span class='st'>"Data.dta"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code># A tibble: 6 × 275
+  election        country   ISO    year date       office numresponses
+  &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt;         &lt;dbl&gt;
+1 AFG_14062014_P2 Afghanis… AFG    2014 2014-06-14 Presi…            6
+2 AFG_14062014_P2 Afghanis… AFG    2014 2014-06-14 Presi…            6
+3 AFG_14062014_P2 Afghanis… AFG    2014 2014-06-14 Presi…            6
+4 AFG_14062014_P2 Afghanis… AFG    2014 2014-06-14 Presi…            6
+5 AFG_14062014_P2 Afghanis… AFG    2014 2014-06-14 Presi…            6
+6 AFG_14062014_P2 Afghanis… AFG    2014 2014-06-14 Presi…            6
+# ℹ 268 more variables: COUNTRYDATA &lt;dbl&gt;, PR &lt;dbl&gt;, CL &lt;dbl&gt;,
+#   fhcategory &lt;dbl&gt;, development &lt;dbl&gt;, gdp_pc_ppp &lt;dbl&gt;,
+#   region &lt;dbl&gt;, region9 &lt;dbl+lbl&gt;, oecd &lt;dbl&gt;,
+#   OVERALLINTEGRITY &lt;dbl&gt;, PEI_add_original_m &lt;dbl&gt;,
+#   PEI_add_original &lt;dbl&gt;, PEI_add_new_m &lt;dbl&gt;, PEI_add_new &lt;dbl&gt;,
+#   PEI_concept_m &lt;dbl&gt;, PEI_contestation_m &lt;dbl&gt;,
+#   PEI_participation_m &lt;dbl&gt;, PEI_deliberation_m &lt;dbl&gt;, …</code></pre>
+</div>
+<p>My research question is how does electoral integrity after national-level elections vary across the world? In this project, I will look at values representing electoral integrity for a number of different countries. I hypothesize that electoral integrity will tend to be higher in countries in the more developed global north than the global south. Moreover, I expect that it will be higher in the most democratic countries in the data set. I expect these findings because stability is very conducive to government legitimacy. My data is taken from 170 countries across 643 elections. My explanatory variables of interest are the different countries studied in the data. My outcome variable of interest is electoral integrity. This is measured through an index of 64 indicators that make up 11 categories. In my data, an observed pattern of higher scores in more developed countries would support my hypothesis. On the other hand, higher scores in less developed countries would disprove my hypothesis.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
