@@ -46,7 +46,8 @@ ggplot(mapping = aes(x = development,
   geom_col(position = "dodge") +
   scale_x_log10() +
   labs(x = "World Bank Development Index",
-       y = "Original Perceptions of Electoral Integrity (PEI)") 
+       y = "Original Perceptions of Electoral Integrity (PEI)"
+       , title = "The Effect of Development on PEI") 
 
 ```
 
