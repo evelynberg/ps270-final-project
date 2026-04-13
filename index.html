@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Data.dta","dataverse_files.zip","final project data.zip","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["Data.dta","dataverse_files.zip","final project data.zip","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/header-attrs-2.30/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1544,8 +1544,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="project-thoughts">Project thoughts</h2>
-<p>I am interested in exploring data related to presidential approval ratings, particularly how they change or do not change after major scandals. Though it also may be interesting to research how these ratings are affected by changes in the economy like oil prices, unemployment, and inflation. Another factor could be related to foreign conflicts. On a different note, I am additionally interested in researching teacher salaries in areas of varying wealth and resources.</p>
 <h2 id="milestone-2">Milestone 2</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1577,26 +1575,64 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 #   PEI_concept_m &lt;dbl&gt;, PEI_contestation_m &lt;dbl&gt;,
 #   PEI_participation_m &lt;dbl&gt;, PEI_deliberation_m &lt;dbl&gt;, …</code></pre>
 </div>
-<p>My research question is how does electoral integrity after national-level elections vary across the world? In this project, I will look at values representing electoral integrity for a number of different countries. I hypothesize that electoral integrity will tend to be higher in countries in the more developed global north than the global south. Moreover, I expect that it will be higher in the most democratic countries in the data set. I expect these findings because stability is very conducive to government legitimacy. My data is taken from 170 countries across 643 elections. My explanatory variables of interest are the different countries studied in the data. My outcome variable of interest is electoral integrity. This is measured through an index of 64 indicators that make up 11 categories. In my data, an observed pattern of higher scores in more developed countries would support my hypothesis. On the other hand, higher scores in less developed countries would disprove my hypothesis.</p>
-<h2 id="milestone-3">Milestone 3</h2>
+<p>My research question is how does electoral integrity after national-level elections vary across the world? In this project, I will look at values representing electoral integrity for a number of different countries. I hypothesize that electoral integrity will tend to be higher in countries in the more developed countries. Moreover, I expect that it will be higher in the most democratic countries in the data set. I expect these findings because stability is very conducive to government legitimacy. My data is taken from 170 countries across 643 elections. My explanatory variables of interest are the different countries studied in the data. My outcome variable of interest is electoral integrity. This is measured through an index of 64 indicators that make up 11 categories. In my data, an observed pattern of higher scores in more developed countries would support my hypothesis. On the other hand, higher scores in less developed countries would disprove my hypothesis.</p>
+<h2 id="milestone-3-revised-visualization">Milestone 3 (Revised Visualization)</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>region9</span> <span class='op'>==</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>region9</span> <span class='op'>==</span> <span class='fl'>3</span>, <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>PEI_add_original</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span></span>
 <span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>development</span>,</span>
-<span>                     y <span class='op'>=</span> <span class='va'>PEI_add_original</span>,</span>
-<span>                  color <span class='op'>=</span> <span class='va'>country</span>,</span>
-<span>                  fill <span class='op'>=</span> <span class='va'>country</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='st'>"dodge"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>                     y <span class='op'>=</span> <span class='va'>PEI_add_original</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>country</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='fl'>2</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>,  formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"World Bank Development Index"</span>,</span>
 <span>       y <span class='op'>=</span> <span class='st'>"Original Perceptions of Electoral Integrity (PEI)"</span></span>
 <span>       , title <span class='op'>=</span> <span class='st'>"The Effect of Development on PEI"</span><span class='op'>)</span> </span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" alt="" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="milestone-4-analysis-results-via-2nd-visualization">Milestone 4 (Analysis &amp; Results Via 2nd Visualization)</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>region9</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>development</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>avg_PEI <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>PEI_add_original</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>development</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='va'>avg_PEI</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x <span class='op'>=</span> <span class='st'>"Development Level"</span>,</span>
+<span>    y <span class='op'>=</span> <span class='st'>"Average PEI"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"Average Electoral Integrity by Development Level in East Asia &amp; the Pacific"</span><span class='op'>)</span></span></code></pre>
+</div>
+<img src="index_files/figure-html5/unnamed-chunk-4-1.png" alt="" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span>  <span class='va'>data</span></span></code></pre>
+</div>
+<pre><code># A tibble: 5,605 × 275
+   election        country  ISO    year date       office numresponses
+   &lt;chr&gt;           &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt;         &lt;dbl&gt;
+ 1 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
+ 2 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
+ 3 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
+ 4 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
+ 5 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
+ 6 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
+ 7 AFG_20102018_L1 Afghani… AFG    2018 2018-10-20 Legis…            8
+ 8 AFG_20102018_L1 Afghani… AFG    2018 2018-10-20 Legis…            8
+ 9 AFG_20102018_L1 Afghani… AFG    2018 2018-10-20 Legis…            8
+10 AFG_20102018_L1 Afghani… AFG    2018 2018-10-20 Legis…            8
+# ℹ 5,595 more rows
+# ℹ 268 more variables: COUNTRYDATA &lt;dbl&gt;, PR &lt;dbl&gt;, CL &lt;dbl&gt;,
+#   fhcategory &lt;dbl&gt;, development &lt;dbl&gt;, gdp_pc_ppp &lt;dbl&gt;,
+#   region &lt;dbl&gt;, region9 &lt;dbl+lbl&gt;, oecd &lt;dbl&gt;,
+#   OVERALLINTEGRITY &lt;dbl&gt;, PEI_add_original_m &lt;dbl&gt;,
+#   PEI_add_original &lt;dbl&gt;, PEI_add_new_m &lt;dbl&gt;, PEI_add_new &lt;dbl&gt;,
+#   PEI_concept_m &lt;dbl&gt;, PEI_contestation_m &lt;dbl&gt;, …</code></pre>
+</div>
+<p>According to my visualizations, there appears to be a positive relationship between development and electoral integrity. The line in the first graph has a positive slope, and both the scatter plot and the bar plot show that the highest levels of electoral integrity tend to come from the countries with the highest development scores. To answer my reseearch question with this evidence, it appears that perceptions of electoral integrity are better in more developed countries.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
