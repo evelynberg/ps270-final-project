@@ -1544,7 +1544,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="milestone-2">Milestone 2</h2>
+<h2 id="introduction">Introduction</h2>
+<p>My research question is how does perceptions of electoral integrity after national-level elections vary across countries of varying development levels in East Asia and the Pacific? In this project, I will look at values representing electoral integrity for a number of different countries. I hypothesize that electoral integrity will tend to be higher in the more developed countries. I expect these findings because stability is very conducive to government legitimacy.</p>
+<p>This question matters for several reasons. First, perceptions of electoral integrity are closely tied to voting behavior. If someone does not believe that their elections are fair, then they are reasonably less motivated to vote. Perceptions of electoral integrity are also related to legitimacy. It is more difficult to regard a regime favorably if it denies its people of their electoral rights through deception. Could these factors be one of the many inequalities between the developed and developing world? This is is an interesting question for political scientists to explore. Furthermore, development, particularly the lack there of in some countries, is a critical international issue, with a number of organizations investing immense time and money toward improvement. The relationship between both variables has important implications for these organizations. Understanding the characteristics of more developed countries can help guide international organizations in helping other countries catch up. Specifically, instilling faith in electoral systems could become a strategy for instance.</p>
+<h2 id="data-section">Data Section</h2>
+<p>The data set is compiled from 170 countries across 643 elections, though I focus on East Asia and the Pacific. My explanatory variables of interest are the different levels of development across the East Asia and Pacific region. Development is measured according to the World Bank income level index with 4 categories. 1 represents low income, 2 represents lower-middle income, 3 represents upper-middle income, and 4 represents high income. Furthermore, my outcome variable of interest is perceptions of electoral integrity. This variable is measured on a scale of 1 to 100, which the researches created using 47 indicators. However, I will not that they removed postal and internet voting from their data.</p>
+<p>I will test my hypothesis at a 95% significance level in which alpha is 0.05 to determine if increases in development correspond to increases in perceptions of electoral integrity in the region. My null hypothesis is that increases in development do not correspond to increases in perceptions of electoral integrity. I will reject the null if I find a p value of less than 0.05 in my test.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://haven.tidyverse.org'>haven</a></span><span class='op'>)</span></span>
@@ -1575,8 +1580,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 #   PEI_concept_m &lt;dbl&gt;, PEI_contestation_m &lt;dbl&gt;,
 #   PEI_participation_m &lt;dbl&gt;, PEI_deliberation_m &lt;dbl&gt;, …</code></pre>
 </div>
-<p>My research question is how does electoral integrity after national-level elections vary across the world? In this project, I will look at values representing electoral integrity for a number of different countries. I hypothesize that electoral integrity will tend to be higher in countries in the more developed countries. Moreover, I expect that it will be higher in the most democratic countries in the data set. I expect these findings because stability is very conducive to government legitimacy. My data is taken from 170 countries across 643 elections. My explanatory variables of interest are the different countries studied in the data. My outcome variable of interest is electoral integrity. This is measured through an index of 64 indicators that make up 11 categories. In my data, an observed pattern of higher scores in more developed countries would support my hypothesis. On the other hand, higher scores in less developed countries would disprove my hypothesis.</p>
-<h2 id="milestone-3-revised-visualization">Milestone 3 (Revised Visualization)</h2>
+<p>Here is a visualization of my outcome of interest: perceptions of electoral integrity. The graph is skewed right, and there appears to be a positive relationship.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>region9</span> <span class='op'>==</span> <span class='fl'>3</span>, <span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>PEI_add_original</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>PEI_add_original</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"steelblue"</span>, color <span class='op'>=</span> <span class='st'>"white"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Perceptions of Electoral Integrity (0-100)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"Number of observations"</span></span>
+<span>       , title <span class='op'>=</span> <span class='st'>"Distribution of Perceptions of Electoral Integrity"</span><span class='op'>)</span> <span class='co'>#CHANGE!</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" alt="" width="624" /></p>
+</div>
+<h2 id="results-section">Results Section</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data</span> <span class='op'>|&gt;</span></span>
@@ -1584,55 +1601,61 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span></span>
 <span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>development</span>,</span>
 <span>                     y <span class='op'>=</span> <span class='va'>PEI_add_original</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>country</span><span class='op'>)</span>, size <span class='op'>=</span> <span class='fl'>2</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>2</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"lm"</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span>,  formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"World Bank Development Index"</span>,</span>
 <span>       y <span class='op'>=</span> <span class='st'>"Original Perceptions of Electoral Integrity (PEI)"</span></span>
 <span>       , title <span class='op'>=</span> <span class='st'>"The Effect of Development on PEI"</span><span class='op'>)</span> </span></code></pre>
 </div>
-<p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" alt="" width="624" /></p>
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" alt="" width="624" /></p>
 </div>
-<h2 id="milestone-4-analysis-results-via-2nd-visualization">Milestone 4 (Analysis &amp; Results Via 2nd Visualization)</h2>
+<p>This plot above demonstrates a positive relationship between development and perceptions of electoral integrity in East Asia and the Pacific. This is evident in the strong, positive slope of the regression line.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>region9</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>development</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>avg_PEI <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>PEI_add_original</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>development</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='va'>avg_PEI</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
-<span>    x <span class='op'>=</span> <span class='st'>"Development Level"</span>,</span>
-<span>    y <span class='op'>=</span> <span class='st'>"Average PEI"</span>,</span>
-<span>    title <span class='op'>=</span> <span class='st'>"Average Electoral Integrity by Development Level in East Asia &amp; the Pacific"</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>data_for_reg</span> <span class='op'>&lt;-</span> <span class='va'>data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>region9</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span></span>
+<span>         </span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://broom.tidymodels.org/'>broom</a></span><span class='op'>)</span></span>
+<span><span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>PEI_add_original</span>  <span class='op'>~</span> <span class='va'>development</span>, data <span class='op'>=</span> <span class='va'>data_for_reg</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span>digits <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span></span>
+<span><span class='va'>fit</span></span></code></pre>
 </div>
-<img src="index_files/figure-html5/unnamed-chunk-4-1.png" alt="" width="624" />
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span>  <span class='va'>data</span></span></code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">term</th>
+<th style="text-align: right;">estimate</th>
+<th style="text-align: right;">std.error</th>
+<th style="text-align: right;">statistic</th>
+<th style="text-align: right;">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">29.788</td>
+<td style="text-align: right;">3.636</td>
+<td style="text-align: right;">8.193</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">development</td>
+<td style="text-align: right;">9.225</td>
+<td style="text-align: right;">1.146</td>
+<td style="text-align: right;">8.047</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
 </div>
-<pre><code># A tibble: 5,605 × 275
-   election        country  ISO    year date       office numresponses
-   &lt;chr&gt;           &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt;         &lt;dbl&gt;
- 1 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
- 2 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
- 3 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
- 4 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
- 5 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
- 6 AFG_14062014_P2 Afghani… AFG    2014 2014-06-14 Presi…            6
- 7 AFG_20102018_L1 Afghani… AFG    2018 2018-10-20 Legis…            8
- 8 AFG_20102018_L1 Afghani… AFG    2018 2018-10-20 Legis…            8
- 9 AFG_20102018_L1 Afghani… AFG    2018 2018-10-20 Legis…            8
-10 AFG_20102018_L1 Afghani… AFG    2018 2018-10-20 Legis…            8
-# ℹ 5,595 more rows
-# ℹ 268 more variables: COUNTRYDATA &lt;dbl&gt;, PR &lt;dbl&gt;, CL &lt;dbl&gt;,
-#   fhcategory &lt;dbl&gt;, development &lt;dbl&gt;, gdp_pc_ppp &lt;dbl&gt;,
-#   region &lt;dbl&gt;, region9 &lt;dbl+lbl&gt;, oecd &lt;dbl&gt;,
-#   OVERALLINTEGRITY &lt;dbl&gt;, PEI_add_original_m &lt;dbl&gt;,
-#   PEI_add_original &lt;dbl&gt;, PEI_add_new_m &lt;dbl&gt;, PEI_add_new &lt;dbl&gt;,
-#   PEI_concept_m &lt;dbl&gt;, PEI_contestation_m &lt;dbl&gt;, …</code></pre>
-</div>
-<p>According to my visualizations, there appears to be a positive relationship between development and electoral integrity. The line in the first graph has a positive slope, and both the scatter plot and the bar plot show that the highest levels of electoral integrity tend to come from the countries with the highest development scores. To answer my reseearch question with this evidence, it appears that perceptions of electoral integrity are better in more developed countries.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>According to this regression, an increase in one unit of the development index is associated with with an increase in perception of electoral integrity of 9.225. Moreover, this is statistically significant (at the level of 0.05) because the p value is very close to 0. This means that the probability of these results being reached by chance alone is very close to 0. I thus reject the null hypothesis stating that higher development levels do not correspond to high levels of perceived electoral integrity.</p>
+<p>Another conclusion we can draw is that development appears to have a strong effect on PEI. Because PEI is measured on a scale of 1-100, a coefficient of 9.225 constitutes a large difference. This adds further support to my findings in the previous paragraph about the positive relationship between my explanatory and outcome variables. Still, we can not interpret this relationship causally. This is because I am working with an observational study and not an experiment, making it lack external validity too. Only an experiment would control for the confounding variables that I will elaborate on in the next section.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>After analyzing my regression results, I can accept my hypothesis that increases in development correspond to increases in perceptions of electoral integrity in East Asia and the Pacific.</p>
+<p>As promised, there are a number of confounding variables present. First, the type of regime governing each country is of extreme importance. Free and fair elections lay the foundation of any democracy, so individuals in more democratic countries would likely have higher perceptions of electoral integrity. Outlooks on this matter would reasonably look very different, for example, in China than they would in Australia. Two more confounding variabls are stability and education. A stable political system is likely to build trust, and it could be reasonable for educated people to trust democratic institutions, for perhaps they are less vulnerable to conspiracy theories.</p>
+<p>Another limitation was briefly touched on in my introduction: the missing data from postal and internet voting. Voting by mail has become increasingly popular in recent years, creating a critical problem. If I had more time/money, I would collect this missing data. An even more expensive idea is to study the perceptions in electoral integrity of countries who currently being heavily invested in for development reasons. I could compare this data to countries in the regime with less investment.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
