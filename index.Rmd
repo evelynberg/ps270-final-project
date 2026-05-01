@@ -7,8 +7,21 @@ output:
     self_contained: false
 ---
 
+## Introduction
 
-## Milestone 2
+My research question is how does perceptions of electoral integrity after national-level elections vary across countries of varying development levels in East Asia and the Pacific? In this project, I will look at values representing electoral integrity for a number of different countries. I hypothesize that electoral integrity will tend to be higher in the more developed countries. I expect these findings because stability is very conducive to government legitimacy. 
+
+This question matters for several reasons. First, perceptions of electoral integrity are closely tied to voting behavior. If someone does not believe that their elections are fair, then they are reasonably less motivated to vote. Perceptions of electoral integrity are also related to legitimacy. It is more difficult to regard a regime favorably if it denies its people of their electoral rights through deception. Could these factors be one of the many inequalities between the developed and developing world? This is is an interesting question for political scientists to explore. Furthermore, development, particularly the lack there of in some countries, is a critical international issue, with a number of organizations investing immense time and money toward improvement. The relationship between both variables has important implications for these organizations. Understanding the characteristics of more developed countries can help guide international organizations in helping other countries catch up. Specifically, instilling faith in electoral systems could become a strategy for instance. 
+
+
+
+## Data Section
+
+The data set is compiled from 170 countries across 643 elections, though I focus on East Asia and the Pacific. My explanatory variables of interest are the different levels of development across the East Asia and Pacific region. Development is measured according to the World Bank income level index with 4 categories. 1 represents low income, 2 represents lower-middle income, 3 represents upper-middle income, and 4 represents high income. Furthermore, my outcome variable of interest is perceptions of electoral integrity. This variable is measured on a scale of 1 to 100, which the researches created using 47 indicators. However, I will not that they removed postal and internet voting from their data. 
+
+
+I will test my hypothesis at a 95% significance level in which alpha is 0.05 to determine if increases in development correspond to increases in perceptions of electoral integrity in the region. My null hypothesis is that increases in development do not correspond to increases in perceptions of electoral integrity. I will reject the null if I find a p value of less than 0.05 in my test. 
+
 
 ```{r}
 library(haven)
@@ -23,11 +36,21 @@ data <- read_dta("Data.dta")
 head(data)
 ```
 
+Here is a visualization of my outcome of interest: perceptions of electoral integrity. The graph is skewed right, and there appears to be a positive relationship.
 
-My research question is how does  electoral integrity after national-level elections vary across the world? In this project, I will look at values representing electoral integrity for a number of different countries. I hypothesize that electoral integrity will tend to be higher in countries in the more developed countries. Moreover, I expect that it will be higher in the most democratic countries in the data set. I expect these findings because stability is very conducive to government legitimacy. My data is taken from 170 countries across 643 elections. My explanatory variables of interest are the different countries studied in the data. My outcome variable of interest is electoral integrity. This is measured through an index of 64 indicators that make up 11 categories. In my data, an observed pattern of higher scores in more developed countries would support my hypothesis. On the other hand, higher scores in less developed countries would disprove my hypothesis. 
+```{r}
+data |>
+  filter(region9 == 3, !is.na(PEI_add_original)) |>
+ggplot(mapping = aes(x = PEI_add_original)) +
+  geom_histogram(fill = "steelblue", color = "white") +
+  labs(x = "Perceptions of Electoral Integrity (0-100)",
+       y = "Number of observations"
+       , title = "Distribution of Perceptions of Electoral Integrity") #CHANGE!
 
+```
 
-## Milestone 3 (Revised Visualization)
+## Results Section
+
 
 ```{r}
 data |>
@@ -35,7 +58,7 @@ data |>
 
 ggplot(mapping = aes(x = development,
                      y = PEI_add_original)) +
-  geom_point(mapping = aes(color = country), size = 2, alpha = 0.5) +
+  geom_point(size = 2, alpha = 0.5) +
   geom_smooth(method = "lm", se = FALSE,  formula = y ~ x) +
   labs(x = "World Bank Development Index",
        y = "Original Perceptions of Electoral Integrity (PEI)"
@@ -43,19 +66,32 @@ ggplot(mapping = aes(x = development,
 
 ```
 
-## Milestone 4 (Analysis & Results Via 2nd Visualization)
+This plot above demonstrates a positive relationship between development and perceptions of electoral integrity in East Asia and the Pacific. This is evident in the strong, positive slope of the regression line. 
+
 
 ```{r}
-data |>
-  filter(region9 == 3) |>
-  group_by(development) |>
-  summarize(avg_PEI = mean(PEI_add_original, na.rm = TRUE)) |>
-  ggplot(aes(x = factor(development), y = avg_PEI)) +
-  geom_col() +
-  labs(
-    x = "Development Level",
-    y = "Average PEI",
-    title = "Average Electoral Integrity by Development Level in East Asia & the Pacific")
-  data
+
+data_for_reg <- data |>
+  filter(region9 == 3)
+         
+library(broom)
+fit <- lm(PEI_add_original  ~ development, data = data_for_reg) |>
+  tidy() |>
+  knitr::kable(digits = 3)
+fit
 ```
-According to my visualizations, there appears to be a positive relationship between development and electoral integrity. The line in the first graph has a positive slope, and both the scatter plot and the bar plot show that the highest levels of electoral integrity tend to come from the countries with the highest development scores. To answer my reseearch question with this evidence, it appears that perceptions of electoral integrity are better in more developed countries. 
+
+According to this regression, an increase in one unit of the development index is associated with with an increase in perception of electoral integrity of 9.225. Moreover, this is statistically significant (at the level of 0.05) because the p value is very close to 0. This means that the probability of these results being reached by chance alone is very close to 0. I thus reject the null hypothesis stating that higher development levels do not correspond to high levels of perceived electoral integrity. 
+
+Another conclusion we can draw is that development appears to have a strong effect on PEI. Because PEI is measured on a scale of 1-100, a coefficient of 9.225 constitutes a large difference. This adds further support to my findings in the previous paragraph about the positive relationship between my explanatory and outcome variables. Still, we can not interpret this relationship causally. This is because I am working with an observational study and not an experiment, making it lack external validity too. Only an experiment would control for the confounding variables that I will elaborate on in the next section. 
+
+
+
+## Conclusion
+
+After analyzing my regression results, I can accept my hypothesis that increases in development correspond to increases in perceptions of electoral integrity in East Asia and the Pacific. 
+
+As promised, there are a number of confounding variables present. First, the type of regime governing each country is of extreme importance. Free and fair elections lay the foundation of any democracy, so  individuals in more democratic countries would likely have higher perceptions of electoral integrity. Outlooks on this matter would reasonably look very different, for example, in China than they would in Australia. Two more confounding variabls are stability and education. A stable political system is likely to build trust, and it could be reasonable for educated people to trust democratic institutions, for perhaps they are less vulnerable to conspiracy theories. 
+
+Another limitation was briefly touched on in my introduction: the missing data from postal and internet voting. Voting by mail has become increasingly popular in recent years, creating a critical problem. If I had more time/money, I would collect this missing data. An even more expensive idea is to study the perceptions in electoral integrity of countries who currently being heavily invested in for development reasons. I could compare this data to countries in the regime with less investment. 
+
