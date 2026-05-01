@@ -86,7 +86,6 @@ According to this regression, an increase in one unit of the development index i
 Another conclusion we can draw is that development appears to have a strong effect on PEI. Because PEI is measured on a scale of 1-100, a coefficient of 9.225 constitutes a large difference. This adds further support to my findings in the previous paragraph about the positive relationship between my explanatory and outcome variables. Still, we can not interpret this relationship causally. This is because I am working with an observational study and not an experiment, making it lack external validity too. Only an experiment would control for the confounding variables that I will elaborate on in the next section. 
 
 
-
 ## Conclusion
 
 After analyzing my regression results, I can accept my hypothesis that increases in development correspond to increases in perceptions of electoral integrity in East Asia and the Pacific. 
